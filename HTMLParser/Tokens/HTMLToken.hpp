@@ -19,8 +19,17 @@ public:
 	TokenType getType();
 
 	// TagToken Methods
-	virtual void appendToTagName(char inputChar) = 0;
-	virtual void appendToAttrName(char inputChar) = 0;
+	virtual void appendToTagName(char inputChar);
+	virtual void appendToAttrName(char inputChar);
+	virtual void appendToAttrValue(char inputChar);
+	virtual void setSelfClosing(bool selfClosing);
+
+	// CommentToken Mthods
+	virtual void appendToData(char inputChar);
+
+	// DoctypeToken Methods
+
+	// CharacterToken Metohds
 
 protected:
 	TokenType type;

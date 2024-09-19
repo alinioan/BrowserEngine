@@ -5,14 +5,14 @@
 
 #include "HTMLToken.hpp"
 
-class CommentToken : public HTMLToken
+class CharacterToken : public HTMLToken
 {
 private:
     char tokenChar;
 
 public:
-    CommentToken();
-    ~CommentToken();
+    CharacterToken(char tokenChar);
+    ~CharacterToken();
 };
 
 #endif

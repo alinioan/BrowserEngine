@@ -18,5 +18,15 @@ void TagToken::appendToTagName(char inputChar)
 
 void TagToken::appendToAttrName(char inputChar)
 {
-    currentAttrName.push_back(inputChar);
+    currentAttrName.push_back(tolower(inputChar));
+}
+
+void TagToken::appendToAttrValue(char inputChar)
+{
+    currentAttrValue.push_back(inputChar);
+}
+
+void TagToken::setSelfClosing(bool selfClosing)
+{
+    this->selfClosing = selfClosing;
 }

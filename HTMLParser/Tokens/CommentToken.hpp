@@ -1,5 +1,5 @@
-#ifndef CHARTOKEN_H
-#define CHARTOKEN_H
+#ifndef COMMENTTOKEN_H
+#define COMMENTTOKEN_H
 
 #include <string>
 
@@ -13,7 +13,7 @@ private:
 public:
     CommentToken();
     ~CommentToken();
-
+    void appendToData(char inputChar) override;
 };
 
 #endif

@@ -20,6 +20,8 @@ public:
     ~TagToken();
     void appendToTagName(char inputChar) override;
     void appendToAttrName(char inputChar) override;
+    void appendToAttrValue(char inputChar) override;
+    void setSelfClosing(bool selfClosing) override;
 };
 
 #endif
