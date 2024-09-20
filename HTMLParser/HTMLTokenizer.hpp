@@ -11,6 +11,7 @@ public:
 	enum TokenizerState
 	{
 		dataState,
+		characterReferenceState,
 		charRefInDataState,
 		rcdataState,
 		rawtextState,
@@ -48,6 +49,8 @@ public:
 		cdataSectionState
 	};
 
+	HTMLTokenizer(std::string input);
+	~HTMLTokenizer();
 	HTMLToken *createToken();
 
 private:
