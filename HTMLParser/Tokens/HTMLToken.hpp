@@ -16,10 +16,11 @@ public:
 
 	HTMLToken();
 	~HTMLToken();
+	
 	TokenType getType();
+	virtual void appendToTagName(char inputChar);
 
 	// TagToken Methods
-	virtual void appendToTagName(char inputChar);
 	virtual void appendToAttrName(char inputChar);
 	virtual void appendToAttrValue(char inputChar);
 	virtual void setSelfClosing(bool selfClosing);
@@ -28,6 +29,7 @@ public:
 	virtual void appendToData(char inputChar);
 
 	// DoctypeToken Methods
+	virtual void setForceQuirks(bool forceQuirks);
 
 	// CharacterToken Metohds
 

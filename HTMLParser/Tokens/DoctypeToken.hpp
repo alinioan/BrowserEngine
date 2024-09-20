@@ -5,7 +5,7 @@
 
 #include "HTMLToken.hpp"
 
-class TagToken : public HTMLToken
+class DoctypeToken : public HTMLToken
 {
 private:
     std::string name;
@@ -13,8 +13,11 @@ private:
     std::string systemIdentifier;
     bool forceQuirks = false;
 public:
-    TagToken();
-    ~TagToken();
+    DoctypeToken();
+    ~DoctypeToken();
+
+    void appendToTagName(char inputChar) override;
+    void setForceQuirks(bool forceQuirks) override;
 };
 
 #endif
