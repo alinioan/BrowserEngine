@@ -12,7 +12,7 @@ private:
 
 public:
     CommentToken();
-    ~CommentToken();
+    ~CommentToken() {}
     void appendToData(char inputChar) override;
 };
 

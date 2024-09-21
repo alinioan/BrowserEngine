@@ -12,17 +12,34 @@
 // In order: tab, line feed, form feed, space
 const std::set<char> whiteSpaceChars = {'\t', '\n', '\f', ' '};
 
+HTMLTokenizer::HTMLTokenizer()
+{
+	cursor = 0;
+}
+
 HTMLTokenizer::HTMLTokenizer(std::string input)
 {
 	cursor = 0;
 	this->input = input;
 }
 
+std::vector<HTMLToken*> HTMLTokenizer::tokenizeString(std::string input)
+{
+	this->input = input;
+	cursor = 0;
+	std::vector<HTMLToken*> tokens;
+	while (cursor < input.size())
+	{
+		tokens.push_back(createToken());
+	}
+	return tokens;
+}
+
 HTMLToken *HTMLTokenizer::createToken()
 {
 	HTMLToken *token;
 	TokenizerState returnState;
-	for (; cursor < HTMLTokenizer::input.size(); cursor++)
+	for (; cursor < input.size(); cursor++)
 	{
 		char nextInputChar = input.at(cursor);
 		switch (state)
@@ -33,7 +50,7 @@ HTMLToken *HTMLTokenizer::createToken()
 				state = characterReferenceState;
 				returnState = dataState;
 			}
-			else if (nextInputChar == '>')
+			else if (nextInputChar == '<')
 				state = tagOpenState;
 			else
 			{
@@ -56,6 +73,25 @@ HTMLToken *HTMLTokenizer::createToken()
 			}
 			// unexpected-question-mark-instead-of-tag-name parse error
 			else if (nextInputChar == '?')
+			{
+				token = new CommentToken;
+				cursor--;
+				state = bogusCommentState;
+			}
+			break;
+		case endTagOpenState:
+			if (isalpha(nextInputChar))
+			{
+				state = tagNameState;
+				token = new TagToken(nextInputChar, HTMLToken::TokenType::EndTag);
+			}
+			// missing-end-tag-name parse error
+			else if (nextInputChar == '>')
+			{
+				state = dataState;
+			}
+			// invalid-first-character-of-tag-name parse error
+			else
 			{
 				token = new CommentToken;
 				cursor--;
@@ -223,7 +259,8 @@ HTMLToken *HTMLTokenizer::createToken()
 				token = new CommentToken;
 				state = commentStartState;
 			}
-			if (input.substr(cursor, cursor + 7) == "doctype")
+			if (input.substr(cursor, cursor + 5) == "doctype" ||
+				input.substr(cursor, cursor + 5) == "DOCTYPE")
 			{
 				cursor += 6;
 				state = doctypeState;
@@ -254,7 +291,7 @@ HTMLToken *HTMLTokenizer::createToken()
 				token->setForceQuirks(true);
 				state = dataState;
 				cursor++;
-				return token;	
+				return token;
 			}
 			else
 			{
@@ -269,7 +306,7 @@ HTMLToken *HTMLTokenizer::createToken()
 			{
 				state = dataState;
 				cursor++;
-				return token;	
+				return token;
 			}
 			else
 				token->appendToTagName(nextInputChar);
@@ -281,7 +318,7 @@ HTMLToken *HTMLTokenizer::createToken()
 			{
 				state = dataState;
 				cursor++;
-				return token;	
+				return token;
 			}
 			// other doctypes not supported
 			token->setForceQuirks(true);

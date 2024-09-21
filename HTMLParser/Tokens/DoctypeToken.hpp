@@ -12,9 +12,10 @@ private:
     std::string publicIdentifier;
     std::string systemIdentifier;
     bool forceQuirks = false;
+
 public:
     DoctypeToken();
-    ~DoctypeToken();
+    ~DoctypeToken() {}
 
     void appendToTagName(char inputChar) override;
     void setForceQuirks(bool forceQuirks) override;

@@ -2,12 +2,22 @@
 #define TOKENIZER_H
 
 #include <string>
+#include <vector>
 
 #include "Tokens/HTMLToken.hpp"
 
 class HTMLTokenizer
 {
 public:
+	HTMLTokenizer(std::string input);
+	HTMLTokenizer();
+	~HTMLTokenizer() {}
+	HTMLToken *createToken();
+	std::vector<HTMLToken *> tokenizeString(std::string input);
+
+	void setInput();
+
+private:
 	enum TokenizerState
 	{
 		dataState,
@@ -48,12 +58,6 @@ public:
 		bogusDoctypeState,
 		cdataSectionState
 	};
-
-	HTMLTokenizer(std::string input);
-	~HTMLTokenizer();
-	HTMLToken *createToken();
-
-private:
 	TokenizerState state{TokenizerState::dataState};
 	std::string input;
 	size_t cursor;

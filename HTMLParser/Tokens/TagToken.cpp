@@ -11,6 +11,11 @@ TagToken::TagToken(char inputChar, TokenType type)
     currentAttrValue = "";
 }
 
+TagToken::~TagToken()
+{
+    
+}
+
 void TagToken::appendToTagName(char inputChar)
 {
     tagName.push_back(inputChar);

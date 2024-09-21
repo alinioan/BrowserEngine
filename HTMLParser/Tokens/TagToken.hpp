@@ -4,7 +4,7 @@
 #include <string>
 
 #include "HTMLToken.hpp"
-#include "DataNode.hpp"
+#include "../../DOM/include/DataNode.hpp"
 
 class TagToken : public HTMLToken
 {
@@ -22,6 +22,7 @@ public:
     void appendToAttrName(char inputChar) override;
     void appendToAttrValue(char inputChar) override;
     void setSelfClosing(bool selfClosing) override;
+    std::string getName() override { return tagName; }
 };
 
 #endif

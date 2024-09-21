@@ -1,6 +1,8 @@
 #ifndef HTMLTOKEN_H
 #define HTMLTOKEN_H
 
+#include <string>
+
 class HTMLToken
 {
 public:
@@ -14,22 +16,23 @@ public:
 		EndOfFile
 	};
 
-	HTMLToken();
-	~HTMLToken();
-	
-	TokenType getType();
-	virtual void appendToTagName(char inputChar);
+	HTMLToken() {}
+	~HTMLToken() {}
+
+	TokenType getType() { return type; }
+	virtual void appendToTagName(char inputChar) {}
+	virtual std::string getName() { return ""; }
 
 	// TagToken Methods
-	virtual void appendToAttrName(char inputChar);
-	virtual void appendToAttrValue(char inputChar);
-	virtual void setSelfClosing(bool selfClosing);
+	virtual void appendToAttrName(char inputChar) {}
+	virtual void appendToAttrValue(char inputChar) {}
+	virtual void setSelfClosing(bool selfClosing) {}
 
 	// CommentToken Mthods
-	virtual void appendToData(char inputChar);
+	virtual void appendToData(char inputChar) {}
 
 	// DoctypeToken Methods
-	virtual void setForceQuirks(bool forceQuirks);
+	virtual void setForceQuirks(bool forceQuirks) {}
 
 	// CharacterToken Metohds
 

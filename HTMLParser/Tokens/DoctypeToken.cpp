@@ -1,6 +1,11 @@
 #include "HTMLToken.hpp"
 #include "DoctypeToken.hpp"
 
+DoctypeToken::DoctypeToken()
+{
+    type = DOCTYPE;
+}
+
 void DoctypeToken::appendToTagName(char inputChar)
 {
     this->name.push_back(towlower(inputChar));

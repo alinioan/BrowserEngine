@@ -12,7 +12,7 @@ private:
 
 public:
     CharacterToken(char tokenChar);
-    ~CharacterToken();
+    ~CharacterToken() {}
 };
 
 #endif

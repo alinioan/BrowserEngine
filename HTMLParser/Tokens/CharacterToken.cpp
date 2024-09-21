@@ -3,5 +3,6 @@
 
 CharacterToken::CharacterToken(char tokenChar)
 {
+    type = Character;
     this->tokenChar = tokenChar;
 }

@@ -5,7 +5,7 @@
 
 CommentToken::CommentToken()
 {
-
+    type = Comment;
 }
 
 void CommentToken::appendToData(char inputChar)
