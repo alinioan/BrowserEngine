@@ -1,12 +1,16 @@
-#include "include/TextNode.hpp"
+#include "TextNode.hpp"
 
-TextNode::TextNode(std::string text) {
-    this->text = text;
-    this->setType(TEXT);
+TextNode::TextNode(const std::string &text)
+{
+	this->text = text;
+	this->set_type(TEXT);
 }
 
-TextNode::~TextNode() {}
+TextNode::~TextNode()
+{
+}
 
-std::string TextNode::toString() {
-    return "TextNode{text=" + text + "}";
+std::string TextNode::to_string()
+{
+	return "TextNode{text=" + text + "}";
 }

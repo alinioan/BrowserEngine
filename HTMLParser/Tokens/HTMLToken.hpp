@@ -2,6 +2,9 @@
 #define HTMLTOKEN_H
 
 #include <string>
+#include <map>
+
+typedef std::map<std::string, std::string> AttrMap;
 
 class HTMLToken
 {
@@ -27,8 +30,10 @@ public:
 	virtual void appendToAttrName(char inputChar) {}
 	virtual void appendToAttrValue(char inputChar) {}
 	virtual void setSelfClosing(bool selfClosing) {}
+	virtual AttrMap getAttributes() { return *(new AttrMap); }
+	virtual bool isSelfClosing() { return false; }
 
-	// CommentToken Mthods
+	// CommentToken Methods
 	virtual void appendToData(char inputChar) {}
 
 	// DoctypeToken Methods

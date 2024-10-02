@@ -1,7 +1,6 @@
 #include <string>
 
 #include "CommentToken.hpp"
-#include "HTMLToken.hpp"
 
 CommentToken::CommentToken()
 {

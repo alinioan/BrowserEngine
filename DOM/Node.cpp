@@ -1,39 +1,49 @@
 #include <iostream>
-#include "include/Node.hpp"
+#include "Node.hpp"
 
-Node::~Node() {
-    for (auto node : children) {
+Node::~Node()
+{
+    for (const auto node : children)
+    {
         delete node;
     }
 }
 
-void Node::add(Node* child) {
+void Node::add(Node *child)
+{
     this->children.push_back(child);
 }
 
-void Node::recPrettyPrint(Node *node, std::string indent) {
-    std::cout << indent << node->toString() << '\n';
-    for (auto child : node->getChildern()) {
-        recPrettyPrint(child, indent + "\t");
+void Node::rec_pretty_print(Node *node, const std::string &indent)
+{
+    std::cout << indent << node->to_string() << '\n';
+    for (auto child : node->get_children())
+    {
+        rec_pretty_print(child, indent + "\t");
     }
 }
 
-void Node::prettyPrint() {
-    recPrettyPrint(this, "");
+void Node::pretty_print()
+{
+    rec_pretty_print(this, "");
 }
 
-std::vector<Node *> Node::getChildern() {
+std::vector<Node *> Node::get_children()
+{
     return this->children;
 }
 
-NodeType Node::getType() {
+NodeType Node::get_type() const
+{
     return this->type;
 }
 
-void Node::setChildren(std::vector<Node *> children) {
+void Node::set_children(const std::vector<Node *> &children)
+{
     this->children = children;
 }
 
-void Node::setType(NodeType type) {
+void Node::set_type(const NodeType type)
+{
     this->type = type;
 }

@@ -1,7 +1,6 @@
-#include "HTMLToken.hpp"
 #include "CharacterToken.hpp"
 
-CharacterToken::CharacterToken(char tokenChar)
+CharacterToken::CharacterToken(const char tokenChar)
 {
     type = Character;
     this->tokenChar = tokenChar;
