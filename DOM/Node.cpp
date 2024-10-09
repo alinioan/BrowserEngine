@@ -11,13 +11,14 @@ Node::~Node()
 
 void Node::add(Node *child)
 {
+    child->set_parent(this);
     this->children.push_back(child);
 }
 
 void Node::rec_pretty_print(Node *node, const std::string &indent)
 {
     std::cout << indent << node->to_string() << '\n';
-    for (auto child : node->get_children())
+    for (const auto child : node->get_children())
     {
         rec_pretty_print(child, indent + "\t");
     }
@@ -46,4 +47,14 @@ void Node::set_children(const std::vector<Node *> &children)
 void Node::set_type(const NodeType type)
 {
     this->type = type;
+}
+
+Node * Node::get_parent() const
+{
+    return this->parent;
+}
+
+void Node::set_parent(Node *parent)
+{
+    this->parent = parent;
 }

@@ -8,6 +8,11 @@ Document::~Document()
 {
 }
 
+bool Document::is_empty() const
+{
+	return root == nullptr;
+}
+
 bool Document::is_quirks_mode() const
 {
 	return quirks_mode;

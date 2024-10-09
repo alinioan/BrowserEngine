@@ -39,3 +39,8 @@ std::string DataNode::to_string()
     node.append("}}");
     return node;
 }
+
+std::string DataNode::get_name()
+{
+    return tag_name;
+}

@@ -14,6 +14,7 @@ public:
 	Document();
 	~Document();
 
+	bool is_empty() const;
 	bool is_quirks_mode() const;
 	void set_quirks_mode(bool quirks_mode);
 	std::string get_doctype() const;

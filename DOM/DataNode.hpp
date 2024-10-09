@@ -18,6 +18,8 @@ public:
 	DataNode(HTMLToken *token);
 	~DataNode();
 
+	std::string get_name() override;
+
 private:
 	std::string tag_name;
 	AttrMap attrs;
