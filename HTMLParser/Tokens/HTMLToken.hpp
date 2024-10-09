@@ -40,6 +40,7 @@ public:
 	virtual void setForceQuirks(bool forceQuirks) {}
 
 	// CharacterToken Metohds
+	virtual char get_char() { return '\0'; }
 
 protected:
 	TokenType type;

@@ -13,6 +13,7 @@ private:
 public:
     CharacterToken(char tokenChar);
     ~CharacterToken() {}
+    char get_char() override;
 };
 
 #endif
